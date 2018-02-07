@@ -2,6 +2,7 @@ This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
 import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile)
+import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
 reverse [] = []
@@ -29,4 +30,10 @@ unzip list = (as, bs)
   where
     as = map fst list
     bs = map snd list
+
+elem :: (Eq a, Foldable t) => a -> t a -> Bool
+elem element foldable = elem' element (toList foldable)
+elem' _ [] = False
+elem' element (a:rest) | a == element = True
+                       | otherwise = elem element rest
 \end{code}
