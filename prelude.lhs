@@ -12,4 +12,10 @@ take _ [] = []
 take count list@(x:xs) | count <= 0 = []
                        | count > length list = list
                        | otherwise = x : (take (pred count) xs)
+
+drop :: Int -> [a] -> [a]
+drop _ [] = []
+drop count list@(x:xs) | count <= 0 = list
+                       | count > length list = []
+                       | otherwise = drop (pred count) xs
 \end{code}
