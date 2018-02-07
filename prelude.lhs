@@ -36,4 +36,10 @@ elem element foldable = elem' element (toList foldable)
 elem' _ [] = False
 elem' element (a:rest) | a == element = True
                        | otherwise = elem element rest
+
+filter :: (a -> Bool) -> [a] -> [a]
+filter _ [] = []
+filter p (a:as) | p a = a : rem
+                | otherwise = rem
+  where rem = filter p as
 \end{code}
