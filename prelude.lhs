@@ -18,4 +18,9 @@ drop _ [] = []
 drop count list@(x:xs) | count <= 0 = list
                        | count > length list = []
                        | otherwise = drop (pred count) xs
+
+zip :: [a] -> [b] -> [(a,b)]
+zip [] _ = []
+zip _ [] = []
+zip (a:as) (b:bs) = (a,b) : zip as bs
 \end{code}
