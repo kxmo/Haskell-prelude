@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile)
 
 reverse :: [a] -> [a]
 reverse [] = []
@@ -23,4 +23,10 @@ zip :: [a] -> [b] -> [(a,b)]
 zip [] _ = []
 zip _ [] = []
 zip (a:as) (b:bs) = (a,b) : zip as bs
+
+unzip :: [(a,b)] -> ([a],[b])
+unzip list = (as, bs)
+  where
+    as = map fst list
+    bs = map snd list
 \end{code}
