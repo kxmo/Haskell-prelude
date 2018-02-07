@@ -33,9 +33,7 @@ unzip list = (as, bs)
 
 elem :: (Eq a, Foldable t) => a -> t a -> Bool
 elem element foldable = elem' element (toList foldable)
-elem' _ [] = False
-elem' element (a:rest) | a == element = True
-                       | otherwise = elem element rest
+elem' element list = not . null $ filter (== element) list
 
 filter :: (a -> Bool) -> [a] -> [a]
 filter _ [] = []
