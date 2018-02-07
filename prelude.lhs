@@ -57,4 +57,9 @@ takeWhile p as = takeWhile' p as []
 takeWhile' _ [] list = reverse list
 takeWhile' p (a:as) list | p a = takeWhile' p as (a:list)
                          | otherwise = takeWhile' p [] list
+
+dropWhile :: (a -> Bool) -> [a] -> [a]
+dropWhile p [] = []
+dropWhile p (a:as) | p a = dropWhile p as
+                   | otherwise = a:as
 \end{code}
