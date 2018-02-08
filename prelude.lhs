@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++))
 import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
@@ -66,4 +66,9 @@ dropWhile p (a:as) | p a = dropWhile p as
 map :: (a -> b) -> [a] -> [b]
 map _ [] = []
 map f (a:list) = f a : (map f list)
+
+(++) :: [a] -> [a] -> [a]
+(++) as bs = listJoin' (reverse as) bs
+listJoin' [] bs = bs
+listJoin' (a:as) bs = listJoin' as (a:bs)
 \end{code}
