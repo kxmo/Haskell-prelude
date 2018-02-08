@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail)
 import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
@@ -80,4 +80,8 @@ last :: [a] -> a
 last [] = error "Cannot use last on an empty list"
 last (a:[]) = a
 last (_:as) = last as
+
+tail :: [a] -> [a]
+tail [] = error "Cannot use tail on an empty list"
+tail (_:as) = as
 \end{code}
