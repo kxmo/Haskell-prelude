@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++))
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head)
 import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
@@ -71,4 +71,8 @@ map f (a:list) = f a : (map f list)
 (++) as bs = listJoin' (reverse as) bs
 listJoin' [] bs = bs
 listJoin' (a:as) bs = listJoin' as (a:bs)
+
+head :: [a] -> a
+head [] = error "Cannot use head on an empty list"
+head (a:_) = a
 \end{code}
