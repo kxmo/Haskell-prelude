@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null)
 import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
@@ -90,4 +90,9 @@ init [] = error "Cannot use init on an empty list"
 init as = init' as []
 init' (_:[]) collection = reverse collection
 init' (a:as) collection = init' as (a:collection)
+
+null :: Foldable t => t a -> Bool
+null foldable = null' (toList foldable)
+null' [] = True
+null' _ = False
 \end{code}
