@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init)
 import Data.Foldable hiding (elem)
 
 reverse :: [a] -> [a]
@@ -84,4 +84,10 @@ last (_:as) = last as
 tail :: [a] -> [a]
 tail [] = error "Cannot use tail on an empty list"
 tail (_:as) = as
+
+init :: [a] -> [a]
+init [] = error "Cannot use init on an empty list"
+init as = init' as []
+init' (_:[]) collection = reverse collection
+init' (a:as) collection = init' as (a:collection)
 \end{code}
