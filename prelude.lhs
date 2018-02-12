@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const)
 import Data.Foldable hiding (elem, sum)
 
 reverse :: [a] -> [a]
@@ -101,4 +101,7 @@ length foldable = sum (map (\_ -> 1) (toList foldable))
 
 id :: a -> a
 id a = a
+
+const :: a -> b -> a
+const a _ = a
 \end{code}
