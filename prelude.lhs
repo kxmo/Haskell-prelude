@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until, (!!))
 import Data.Foldable hiding (elem, sum)
 
 reverse :: [a] -> [a]
@@ -114,4 +114,10 @@ flip f b a = f a b
 until :: (a -> Bool) -> (a -> a) -> a -> a
 until p next current | p current = current
                      | otherwise = until p next (next current)
+
+(!!) :: [a] -> Int -> a
+(!!) list count | count < 0 = error "Negative index"
+                | null list = error "Index too large" -- This is valid because we know count is >= 0
+                | count == 0 = head list
+                | otherwise = (!!) (tail list) (pred count)
 \end{code}
