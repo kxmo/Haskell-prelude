@@ -1,7 +1,7 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.))
 import Data.Foldable hiding (elem, sum)
 
 reverse :: [a] -> [a]
@@ -104,4 +104,7 @@ id a = a
 
 const :: a -> b -> a
 const a _ = a
+
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
+(.) f g = (\a -> f (g a))
 \end{code}
