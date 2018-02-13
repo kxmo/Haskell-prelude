@@ -122,10 +122,10 @@ until p next current | p current = current
                 | otherwise = (!!) (tail list) (pred count)
 
 and :: Foldable t => t Bool -> Bool
-and foldable = null $ filter (== False) (toList foldable)
+and foldable = not $ any (== False) foldable
 
 or :: Foldable t => t Bool -> Bool
-or foldable = not $ null $ filter (== True) (toList foldable)
+or foldable = any (== True) foldable
 
 any :: Foldable t => (a -> Bool) -> t a -> Bool
 any p foldable = not $ null $ filter p (toList foldable)
