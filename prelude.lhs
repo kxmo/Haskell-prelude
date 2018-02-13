@@ -1,8 +1,8 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until, (!!))
-import Data.Foldable hiding (elem, sum)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until, (!!), and)
+import Data.Foldable hiding (elem, sum, and)
 
 reverse :: [a] -> [a]
 reverse [] = []
@@ -120,4 +120,7 @@ until p next current | p current = current
                 | null list = error "Index too large" -- This is valid because we know count is >= 0
                 | count == 0 = head list
                 | otherwise = (!!) (tail list) (pred count)
+
+and :: Foldable t => t Bool -> Bool
+and foldable = null $ filter (== False) (toList foldable)
 \end{code}
