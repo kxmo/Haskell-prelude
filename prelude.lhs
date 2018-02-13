@@ -1,8 +1,8 @@
 This file contains a reimplementation of many of the functions in Prelude.
 
 \begin{code}
-import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until, (!!), and, or, any, all)
-import Data.Foldable hiding (elem, sum, and, or, any, all)
+import Prelude hiding (reverse, take, drop, zip, unzip, elem, filter, takeWhile, dropWhile, map, (++), head, last, tail, init, null, length, id, const, (.), flip, until, (!!), and, or, any, all, concat)
+import Data.Foldable hiding (elem, sum, and, or, any, all, concat, foldr)
 
 reverse :: [a] -> [a]
 reverse [] = []
@@ -132,4 +132,7 @@ any p foldable = not $ null $ filter p (toList foldable)
 
 all :: Foldable t => (a -> Bool) -> t a -> Bool
 all p foldable = not $ any (not . p) foldable
+
+concat :: Foldable t => t [a] -> [a]
+concat foldable = foldr (++) [] (toList foldable)
 \end{code}
