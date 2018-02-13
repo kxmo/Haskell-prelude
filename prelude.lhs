@@ -122,7 +122,7 @@ until p next current | p current = current
                 | otherwise = (!!) (tail list) (pred count)
 
 and :: Foldable t => t Bool -> Bool
-and foldable = not $ any (== False) foldable
+and foldable = all (== True) foldable
 
 or :: Foldable t => t Bool -> Bool
 or foldable = any (== True) foldable
